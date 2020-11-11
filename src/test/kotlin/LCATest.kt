@@ -77,4 +77,17 @@ class LCATest : StringSpec({
     "Find LCA of E and F, should be C" {
         getLCA(dagA, dagE, dagF) shouldBe dagC
     }
+
+    "Find LCA of E and E, should be E" {
+        getLCA(dagA, dagE, dagE) shouldBe dagE
+    }
+
+    "Find LCA of E and B, should be A" {
+        getLCA(dagA, dagE, dagB) shouldBe dagA
+    }
+
+    "Find LCA of C and E, should be C" {
+        getLCA(dagA, dagC, dagE) shouldBe dagC
+    }
+
 })
