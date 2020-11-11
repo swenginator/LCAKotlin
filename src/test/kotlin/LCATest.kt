@@ -47,6 +47,10 @@ class LCATest : StringSpec({
         getLCA(root, root, root) shouldBe root
     }
 
+    "Find ancestor of 3 and 1, should be 1" {
+        getLCA(root, node3, node1) shouldBe node1
+    }
+
     /**
      * Create a DAG for the following tests
      *              A ----------|
