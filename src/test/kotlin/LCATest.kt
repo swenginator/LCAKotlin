@@ -46,4 +46,35 @@ class LCATest : StringSpec({
         root.children.add(root)
         getLCA(root, root, root) shouldBe root
     }
+
+    /**
+     * Create a DAG for the following tests
+     *              A ----------|
+     *           /  |  \        |
+     *         B    C   D       |
+     *            /  \  /       |
+     *           F    E <-------|
+     */
+
+    val dagA: Node<Char> = Node('A')
+    val dagB: Node<Char> = Node('B')
+    val dagC: Node<Char> = Node('C')
+    val dagD: Node<Char> = Node('D')
+    val dagE: Node<Char> = Node('E')
+    val dagF: Node<Char> = Node('F')
+    dagA.children.add(dagB)
+    dagA.children.add(dagC)
+    dagA.children.add(dagD)
+    dagA.children.add(dagE)
+    dagC.children.add(dagE)
+    dagC.children.add(dagF)
+    dagD.children.add(dagE)
+
+    "Find LCA of B and D, should be A" {
+      getLCA(dagA, dagB, dagC) shouldBe dagA
+    }
+
+    "Find LCA of E and F, should be C" {
+        getLCA(dagA, dagE, dagF) shouldBe dagC
+    }
 })
