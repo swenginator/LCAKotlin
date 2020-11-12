@@ -7,8 +7,11 @@ fun <V> getLCA(root: Node<V>, nodea: Node<V>, nodeb: Node<V>): Node<V>? {
 
     // Find all ancestors of a and b, then return the maximum element of the intersection of the two sets
 
+    // Check special cases first
     if (nodea === root || nodeb === root) return root
     if (nodea === nodeb) return nodea
+    if(nodea.children.contains(nodeb)) return nodea
+    else if(nodeb.children.contains(nodea)) return nodeb
     
 
     val ancestorsA = getAncestors(root, nodea)
@@ -47,6 +50,7 @@ private fun <V> getAncestorsHelper(root: Node<V>, target: Node<V>, result: Mutab
     for (child in root.children) {
         if(getAncestorsHelper(child, target, result)){
             result.add(root)
+            return true
         }
     }
 
