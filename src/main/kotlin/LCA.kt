@@ -9,6 +9,7 @@ fun <V> getLCA(root: Node<V>, nodea: Node<V>, nodeb: Node<V>): Node<V>? {
 
     if (nodea === root || nodeb === root) return root
     if (nodea === nodeb) return nodea
+    
 
     val ancestorsA = getAncestors(root, nodea)
     val ancestorsB = getAncestors(root, nodeb)
@@ -46,7 +47,6 @@ private fun <V> getAncestorsHelper(root: Node<V>, target: Node<V>, result: Mutab
     for (child in root.children) {
         if(getAncestorsHelper(child, target, result)){
             result.add(root)
-            return true
         }
     }
 
